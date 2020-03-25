@@ -1,8 +1,8 @@
 name: pelion-edge
-base: core18
+base: core
 version: "1.5"
 summary: Pelion Edge
-description: Pelion Edge - BTC con dev
+description: Pelion Edge - con dev
 confinement: devmode
 grade: devel
 architectures:
