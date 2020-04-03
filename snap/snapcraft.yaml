@@ -171,7 +171,7 @@ parts:
     fog-proxy:
       plugin: go
       source: git@github.com:armPelionEdge/fog-proxy.git
-      source-commit: 97b9eb936fb29562bd6a33fdeca27fa44b002300
+      source-commit: 1550bbfb223128116e1d4f41dee03b8f9658b134
       go-importpath: github.com/armPelionEdge/fog-proxy
       override-build: |
         snapcraftctl build
