@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
 # Install Go
 # Grab the go snap from the stable channel, unpack it in the proper place,
 # and link the go binaries to make them available to snapcraft
-RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/go?version=1.13.5' | jq '.download_url' -r) --output go.snap && \
+RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/go?version=1.14.3' | jq '.download_url' -r) --output go.snap && \
 	mkdir -p /snap/go && \
 	unsquashfs -d /snap/go/current go.snap && \
 	ln -sf /snap/go/current/bin/go /snap/bin/go && \
