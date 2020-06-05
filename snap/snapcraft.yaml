@@ -65,7 +65,7 @@ apps:
     help:
       command: cat ${SNAP}/help.md
     devicedb:
-      command: wigwag/system/bin/devicedb start -conf $SNAP_DATA/wigwag/etc/devicejs/devicedb.yaml
+      command: launch-devicedb.sh
       passthrough:
         restart-delay: 5s
       restart-condition: always
@@ -261,6 +261,11 @@ parts:
       source: git@github.com:armPelionEdge/devicedb.git
       source-commit: a4ee46f3d9bc58b694e7563502142dfe265110cb
       go-importpath: github.com/armPelionEdge/devicedb
+      override-build: |
+        snapcraftctl build
+        install ${SNAPCRAFT_PROJECT_DIR}/files/devicedb/scripts/launch-devicedb.sh ${SNAPCRAFT_PART_INSTALL}/
+        install -d ${SNAPCRAFT_PART_INSTALL}/wigwag/system/bin
+        install hack/compose-cloud-add-device.sh ${SNAPCRAFT_PART_INSTALL}/wigwag/system/bin/compose-cloud-add-device.sh
       organize:
         'bin/*': wigwag/system/bin/
     edge-node-modules:
