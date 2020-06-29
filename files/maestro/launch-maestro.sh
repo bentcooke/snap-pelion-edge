@@ -4,4 +4,17 @@ if [ ! -f ${SNAP_DATA}/userdata/edge_gw_identity/identity.json ]; then
     exit 1
 fi
 
-exec ${SNAP}/wigwag/system/bin/maestro -config $SNAP_DATA/maestro-config.yaml
+config_file=$SNAP_DATA/maestro-config.yaml
+
+# Obtain interfaces maestro is managing
+interfaces=$(yq r $config_file network.interfaces.*.if_name)
+
+# If interfaces found, turn of nmcli management of said interfaces
+[ $? = 0 ] && for i in $interfaces; do
+    $SNAP/bin/nmcli dev set $i managed no
+done
+
+# @todo: turn on management of previous interfaces that were disabled
+#        and are no longer managed by maestro
+
+exec ${SNAP}/wigwag/system/bin/maestro -config $config_file
