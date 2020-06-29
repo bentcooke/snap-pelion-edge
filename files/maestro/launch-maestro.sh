@@ -7,7 +7,7 @@ fi
 config_file=$SNAP_DATA/maestro-config.yaml
 
 # Obtain interfaces maestro is managing
-interfaces=$(yq r $config_file network.interfaces.*.if_name)
+interfaces=$($SNAP/bin/yq r $config_file network.interfaces.*.if_name)
 
 # If interfaces found, turn of nmcli management of said interfaces
 [ $? = 0 ] && for i in $interfaces; do
