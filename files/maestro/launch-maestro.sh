@@ -1,3 +1,4 @@
+#!/bin/bash
 
 if [ ! -f ${SNAP_DATA}/userdata/edge_gw_identity/identity.json ]; then
     echo "identity.json does not exist"
