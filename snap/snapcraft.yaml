@@ -47,7 +47,7 @@ apps:
       passthrough:
         restart-delay: 5s
       restart-condition: always
-      command: bin/node $SNAP/wigwag/wigwag-core-modules/relay-term/src/index.js start $SNAP_DATA/relayterm-config.json
+      command: launch-relay-term.sh
       daemon: simple
       environment:
         NODE_PATH: $SNAP/wigwag/devicejs-core-modules/node_modules
@@ -277,6 +277,7 @@ parts:
       override-build: |
         git am ${SNAPCRAFT_PROJECT_DIR}/files/edge-node-modules/patches/0001-Added-package.json.patch
         snapcraftctl build
+        install ${SNAPCRAFT_PROJECT_DIR}/files/relay-term/scripts/launch-relay-term.sh ${SNAPCRAFT_PART_INSTALL}/
       organize:
         'DevStateManager/': wigwag/wigwag-core-modules/DevStateManager/
         'LEDController/': wigwag/wigwag-core-modules/LEDController/
