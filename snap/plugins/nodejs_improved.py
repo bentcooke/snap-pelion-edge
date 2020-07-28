@@ -56,7 +56,7 @@ from snapcraft.file_utils import link_or_copy, link_or_copy_tree
 
 
 _NODEJS_BASE = "node-v{version}-linux-{arch}"
-_NODEJS_VERSION = "8.12.0"
+_NODEJS_VERSION = "8.16.0"
 _NODEJS_TMPL = "https://nodejs.org/dist/v{version}/{base}.tar.gz"
 _NODEJS_ARCHES = {
     "i386": "x86",
@@ -198,7 +198,7 @@ class NodePlugin(snapcraft.BasePlugin):
 
         flags = []
         if rootdir == self.builddir:
-            flags = ["--prod"]
+            flags = ["--production --unsafe-perm=true --allow-root"]
 
         self.run(cmd + ["install"] + flags, rootdir)
 
